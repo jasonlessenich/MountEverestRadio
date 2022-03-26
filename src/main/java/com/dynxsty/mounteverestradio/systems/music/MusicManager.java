@@ -2,15 +2,12 @@ package com.dynxsty.mounteverestradio.systems.music;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
-import com.sedmelluq.discord.lavaplayer.source.AudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.managers.AudioManager;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,15 +46,6 @@ public class MusicManager {
 			audio.openAudioConnection(member.getVoiceState().getChannel());
 		}
 		this.play(manager, track);
-	}
-
-	public void skipTrack(Guild guild) {
-		GuildMusicManager musicManager = this.getGuildAudioPlayer(guild);
-		musicManager.scheduler.nextTrack();
-	}
-
-	public String getValidLink(String s) {
-		return s;
 	}
 
 	public AudioPlayerManager getPlayerManager() {

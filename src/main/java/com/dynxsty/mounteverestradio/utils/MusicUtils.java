@@ -1,6 +1,5 @@
 package com.dynxsty.mounteverestradio.utils;
 
-import com.dynxsty.mounteverestradio.systems.music.MusicManager;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
@@ -8,9 +7,6 @@ import net.dv8tion.jda.api.entities.User;
 import youTubeAPI.core.entities.Thumbnails;
 import youTubeAPI.core.entities.search.Item;
 import youTubeAPI.core.entities.videos.VideosItem;
-
-import javax.annotation.Nullable;
-import java.time.Duration;
 
 public class MusicUtils {
 
