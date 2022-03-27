@@ -18,7 +18,7 @@ public class SystemsConfig {
 	/**
 	 * The token used to create the YouTube API instance.
 	 */
-	private List<String> youtubeTokens = List.of();
+	private String youtubeToken = "";
 
 	/**
 	 * The number of threads to allocate to the bot's general purpose async
