@@ -2,7 +2,6 @@ package com.dynxsty.mounteverestradio.systems.music.commands;
 
 import com.dynxsty.dih4jda.commands.interactions.slash_command.ISlashCommand;
 import com.dynxsty.dih4jda.commands.interactions.slash_command.dao.GuildSlashCommand;
-import com.dynxsty.mounteverestradio.Bot;
 import com.dynxsty.mounteverestradio.utils.Responses;
 import net.dv8tion.jda.api.entities.AudioChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;

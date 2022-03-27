@@ -3,6 +3,7 @@ package com.dynxsty.mounteverestradio;
 import com.dynxsty.dih4jda.DIH4JDA;
 import com.dynxsty.dih4jda.DIH4JDABuilder;
 import com.dynxsty.mounteverestradio.config.BotConfig;
+import com.dynxsty.mounteverestradio.listener.AutoCompleteListener;
 import com.dynxsty.mounteverestradio.listener.ShutdownListener;
 import com.dynxsty.mounteverestradio.listener.UserLeftListener;
 import com.dynxsty.mounteverestradio.systems.music.MusicManager;
@@ -59,13 +60,13 @@ public class Bot {
 				.setStatus(OnlineStatus.DO_NOT_DISTURB)
 				.addEventListeners(PresenceUpdater.standardActivities())
 				.build();
+		addEventListeners(jda);
 		dih4jda = DIH4JDABuilder
 				.setJDA(jda)
 				.setCommandsPackage("com.dynxsty.mounteverestradio.systems")
 				.build();
-		addEventListeners(jda);
 //		authorizeSpotify(config.getSystems().getSpotify());
-		youtubeApi = new YouTubeAPI(config.getSystems().getYoutubeToken());
+		youtubeApi = new YouTubeAPI(config.getSystems().getYoutubeTokens().get(1));
 	}
 
 //	private static void authorizeSpotify(SystemsConfig.SpotifyConfig config) {
@@ -81,6 +82,7 @@ public class Bot {
 
 	private static void addEventListeners(JDA jda) {
 		jda.addEventListener(
+				new AutoCompleteListener(),
 				new ShutdownListener(),
 				new UserLeftListener()
 		);

@@ -7,10 +7,7 @@ import com.dynxsty.mounteverestradio.systems.music.GuildMusicManager;
 import com.dynxsty.mounteverestradio.utils.Responses;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-import net.dv8tion.jda.api.interactions.commands.OptionMapping;
-import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
-import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 
 public class PauseCommand extends GuildSlashCommand implements ISlashCommand {
 	public PauseCommand() {

@@ -58,7 +58,7 @@ public class MusicUtils {
 		return minutes + ":" + secs;
 	}
 
-	private static String getHighestResolutionThumbnail(Thumbnails thumbnails) {
+	public static String getHighestResolutionThumbnail(Thumbnails thumbnails) {
 		if (thumbnails == null) return null;
 		if (thumbnails.getMaxres() != null) {
 			return thumbnails.getMaxres().url;
@@ -68,7 +68,9 @@ public class MusicUtils {
 			return thumbnails.getMedium().url;
 		} else if (thumbnails.getStandard() != null) {
 			return thumbnails.getStandard().url;
+		} else if (thumbnails.getDefault() != null) {
+			return thumbnails.getDefault().url;
 		}
-		return thumbnails.getDefault().url;
+		return null;
 	}
 }
