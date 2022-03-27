@@ -24,7 +24,7 @@ public class SkipCommand extends GuildSlashCommand implements ISlashCommand {
 	public void handleSlashCommandInteraction(SlashCommandInteractionEvent event) {
 		event.deferReply(false).queue();
 		GuildMusicManager guildManager = Bot.musicManager.getGuildAudioPlayer(event.getGuild());
-		guildManager.scheduler.setLoop(false);
+		guildManager.scheduler.setTrackLoop(false);
 		AudioTrack currentlyPlaying = guildManager.player.getPlayingTrack();
 		AudioTrack nextTrack = guildManager.scheduler.getQueue().peek();
 		if (currentlyPlaying == null) {
@@ -32,6 +32,7 @@ public class SkipCommand extends GuildSlashCommand implements ISlashCommand {
 			return;
 		}
 		guildManager.scheduler.nextTrack();
+		guildManager.player.setPaused(false);
 		event.getHook().sendMessageEmbeds(this.buildSkipEmbed(event.getUser(), currentlyPlaying, nextTrack)).queue();
 	}
 

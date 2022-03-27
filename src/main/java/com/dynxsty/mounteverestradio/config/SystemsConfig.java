@@ -2,6 +2,8 @@ package com.dynxsty.mounteverestradio.config;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * Contains configuration settings for various systems which the bot uses, such
  * as databases or dependencies that have runtime properties.
@@ -16,7 +18,7 @@ public class SystemsConfig {
 	/**
 	 * The token used to create the YouTube API instance.
 	 */
-	private String youtubeToken = "";
+	private List<String> youtubeTokens = List.of();
 
 	/**
 	 * The number of threads to allocate to the bot's general purpose async

@@ -43,7 +43,10 @@ public class PlayCommand extends GuildSlashCommand implements ISlashCommand {
 
 	private void addToQueue(InteractionHook hook, Member member, String query, boolean urlSearch) throws YouTubeException {
 		GuildMusicManager musicManager = Bot.musicManager.getGuildAudioPlayer(member.getGuild());
-		// Get the first result
+		if (musicManager.scheduler.getQueue().size() > 24) {
+			Responses.respond(hook, "Cannot add more than 25 songs to the queue!").queue();
+			return;
+		}
 		if (!urlSearch) {
 			query = Bot.youtubeApi.searchVideo(query).getItems().get(0).getId().videoId;
 		}

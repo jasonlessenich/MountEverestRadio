@@ -13,7 +13,8 @@ public class TrackScheduler extends AudioEventAdapter {
 	private final AudioPlayer player;
 	private final BlockingQueue<AudioTrack> queue;
 
-	private boolean loop = false;
+	private boolean trackLoop = false;
+	private boolean queueLoop = false;
 
 	public TrackScheduler(AudioPlayer player) {
 		this.player = player;
@@ -32,7 +33,10 @@ public class TrackScheduler extends AudioEventAdapter {
 
 	@Override
 	public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
-		if (loop && track != null) {
+		if (queueLoop && track != null) {
+			queue.offer(track.makeClone());
+		}
+		if (trackLoop && track != null) {
 			this.player.startTrack(track.makeClone(), false);
 		} else if (endReason.mayStartNext) {
 			this.nextTrack();
@@ -43,11 +47,21 @@ public class TrackScheduler extends AudioEventAdapter {
 		return this.queue;
 	}
 
-	public void setLoop(boolean loop) {
-		this.loop = loop;
+	public void setTrackLoop(boolean loop) {
+		if (loop) this.setQueueLoop(false);
+		this.trackLoop = loop;
 	}
 
-	public boolean isLoop() {
-		return this.loop;
+	public boolean isTrackLooping() {
+		return this.trackLoop;
+	}
+
+	public void setQueueLoop(boolean loop) {
+		if (loop) this.setTrackLoop(false);
+		this.queueLoop = loop;
+	}
+
+	public boolean isQueueLooping() {
+		return this.queueLoop;
 	}
 }

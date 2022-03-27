@@ -10,9 +10,9 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 
-public class LoopCommand extends GuildSlashCommand implements ISlashCommand {
-	public LoopCommand() {
-		this.setCommandData(Commands.slash("loop", "Toggles looping for the current playing song."));
+public class TrackLoopCommand extends GuildSlashCommand implements ISlashCommand {
+	public TrackLoopCommand() {
+		this.setCommandData(Commands.slash("track-loop", "Toggles looping for the current playing song."));
 	}
 
 	@Override
@@ -24,9 +24,9 @@ public class LoopCommand extends GuildSlashCommand implements ISlashCommand {
 			Responses.respond(event.getHook(), "There is nothing playing right now").queue();
 			return;
 		}
-		manager.scheduler.setLoop(!manager.scheduler.isLoop());
+		manager.scheduler.setTrackLoop(!manager.scheduler.isTrackLooping());
 		String text = "Enabled";
-		if (!manager.scheduler.isLoop()) text = "Disabled";
+		if (!manager.scheduler.isTrackLooping()) text = "Disabled";
 		Responses.respond(event.getHook(), String.format("%s Track Loop", text), MusicUtils.formatPlayingTrack(current)).queue();
 	}
 }
