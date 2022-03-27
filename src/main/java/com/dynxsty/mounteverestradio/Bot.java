@@ -66,7 +66,7 @@ public class Bot {
 				.setCommandsPackage("com.dynxsty.mounteverestradio.systems")
 				.build();
 //		authorizeSpotify(config.getSystems().getSpotify());
-		youtubeApi = new YouTubeAPI(config.getSystems().getYoutubeTokens().get(1));
+		youtubeApi = new YouTubeAPI(config.getSystems().getYoutubeTokens().get(0));
 	}
 
 //	private static void authorizeSpotify(SystemsConfig.SpotifyConfig config) {
