@@ -51,7 +51,12 @@ public class QueueListSubcommand extends Subcommand implements ISlashCommand {
 			}
 		}
 		if (queue.size() > 0) {
-			builder.addField("Next Up", queue.stream().map(MusicUtils::formatQueuedTrack).collect(Collectors.joining("\n\n")), false);
+			boolean hasNextUp = true;
+			for (AudioTrack queued : queue) {
+				String value = MusicUtils.formatQueuedTrack(queued);
+				builder.addField(hasNextUp ? "Next Up" : "", value.substring(0, Math.min(MessageEmbed.VALUE_MAX_LENGTH, value.length())), false);
+				hasNextUp = false;
+			}
 		}
 		return builder.build();
 	}
